@@ -1,0 +1,42 @@
+name: ci_test
+
+on:
+  create:
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  
+  # only tag trigger release
+  build_and_release:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: mkdir
+      run: mkdir ./output
+    - name: compile
+      run: |
+        cd ./output &&\
+        gcc -c -fPIC -I../header ../src/*.c &&\
+        gcc *.o -shared -o test.so
+    - name: zip output
+      run: tar cvf ./artifact.tar ./output/*
+    - name: release
+      uses: actions/create-release@v1
+      id: create_release
+      with:
+        draft: false
+        prerelease: false
+        release_name: Release ${{ github.ref }}
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        asset_path: ./artifact.tar
+        asset_name: artifact.tar
+        asset_content_type: application/tar
