@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: check libgtest 
-      run: ls usr/src/gtest
+      run: ls /usr/src/gtest
     - name: Run Test
       run: sh test.sh 0
