@@ -9,7 +9,7 @@ jobs:
   
   # only tag trigger release
   build_and_release:
-    runs-on: ubuntu-20.04
+    runs-on: [self-hosted, Linux, X64, ci_1]
     steps:
     - uses: actions/checkout@v2
     - name: mkdir
