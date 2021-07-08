@@ -1,0 +1,16 @@
+name: ci_test_pr
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # pr to main trigger test
+  test:
+    runs-on: ubuntu-20.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install gtest manually
+      run: sudo apt-get install libgtest-dev
+    - name: Run Test
+      run: sh test.sh 1
