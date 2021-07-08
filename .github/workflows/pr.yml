@@ -9,9 +9,8 @@ jobs:
   test:
     runs-on: ubuntu-20.04
     steps:
+    - uses: actions/checkout@v2
     - name: Install gtest manually
       run: sudo apt-get install libgtest-dev
     - name: Run Test
-      run: |
-        ls &&\
-        sh test.sh 1
+      run: sh test.sh 1
