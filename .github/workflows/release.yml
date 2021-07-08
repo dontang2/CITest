@@ -1,15 +1,15 @@
-name: ci_test
+name: ci_test_build
 
 on:
   push:
     tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+      - 'v*' # Push events to matching v*
 
 jobs:
   
   # only tag trigger release
   build_and_release:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: mkdir
