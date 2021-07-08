@@ -13,4 +13,4 @@ jobs:
     - name: Install gtest manually
       run: sudo apt-get install libgtest-dev
     - name: Run Test
-      run: sh test.sh 1
+      run: sh test.sh 3
