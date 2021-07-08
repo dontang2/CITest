@@ -1,0 +1,4 @@
+.git*   export-ignore
+header  export-ignore
+src     export-ignore
+test.sh export-ignore
