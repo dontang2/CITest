@@ -10,7 +10,7 @@ jobs:
     runs-on: [self-hosted, Linux, X64, ci_1]
     steps:
     - uses: actions/checkout@v2
-    - name: Install gtest manually
-      run: sudo apt-get install libgtest-dev
+    - name: check libgtest 
+      run: ls usr/src/gtest
     - name: Run Test
       run: sh test.sh 0
