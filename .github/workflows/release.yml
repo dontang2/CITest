@@ -9,7 +9,7 @@ jobs:
   
   # only tag trigger release
   build_and_release:
-    runs-on: [self-hosted, Linux, X64, ci_1]
+    runs-on: [self-hosted, Linux, X64, build]
     steps:
     - uses: actions/checkout@v2
     - name: mkdir
